@@ -34,5 +34,64 @@ public class Buses extends Transport <DriverC>  {
         System.out.println("Автобус" + getBrand()+ " закончил движение");
     }
 
+    @Override
+    public void getType() {
+    }
 
+    @Override
+    public void printType() {
+        System.out.println(Type.Buses);
+    }
+}
+enum Capacity{
+    ESPECIALLY_SMALL("особо малая", 0, 10),
+    SMALL("малая", 0, 25),
+    MIDDLE("средняя", 25, 50),
+    BIG("большая", 50, 80),
+    ESPECIALLY_BIG("особо большая", 80, 120);
+    private double capacityUpTo;
+    private double capacityFrom;
+    private String busCapacity;
+
+    Capacity(String busCapacity, double capacityFrom, double capacityUpTo) {
+        this.capacityFrom = capacityFrom;
+        this.capacityUpTo = capacityUpTo;
+        this.busCapacity = busCapacity;
+    }
+    public String getBusCapacity() {
+        return busCapacity;
+    }
+
+    public void setBusCapacity(String busCapacity) {
+        this.busCapacity = busCapacity;
+    }
+
+    public double getCapacityFrom() {
+        return capacityFrom;
+    }
+
+    public void setCapacityFrom(double capacityFrom) {
+        if (capacityFrom <= 0 ){
+            System.out.println(getBusCapacity()  + ": " + "до " + getCapacityFrom());
+        }
+        this.capacityFrom = capacityFrom;
+    }
+
+    public double getCapacityUpTo() {
+        return capacityUpTo;
+    }
+
+    public void setCapacityUpTo(double capacityUpTo) {
+        if (capacityFrom >= 15 ){
+            System.out.println(getBusCapacity() + ": " + "до " + getCapacityUpTo());
+        }
+        this.capacityUpTo = capacityUpTo;
+    }
+
+    @Override
+    public String toString() {
+        return getBusCapacity() + ": " +
+                "нижняя граница = " + getCapacityFrom() +
+                ", верхняя граница = " + getCapacityUpTo() + " мест";
+    }
 }

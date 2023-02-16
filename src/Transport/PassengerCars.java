@@ -34,4 +34,43 @@ public class PassengerCars extends Transport <DriverB>  {
         System.out.println("Легковой автомобиль " + getBrand()+ " закончил движение");
     }
 
+    @Override
+    public void getType() {
+    }
+
+    @Override
+    public void printType() {
+        System.out.println(Type.PassengerCars);
+    }
+}
+enum bodyType{
+    SEDAN("Седан"),
+    HATCHBACK("Хэтчбэк"),
+    COUPLE("Купе"),
+    STATIONWAGON("Универсал"),
+    SUV("Внедорожник"),
+    CROSSOVER("Кроссовер"),
+    PICKUP("Пикап"),
+    VAN("Фургон"),
+    MINIVAN("Минивэн");
+
+    private String type;
+    bodyType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+   @Override
+    public String toString() {
+        return "Тип кузова " + getType() +": " +
+                "Название типа кузова на русском языке '" + type + "'";
+    }
+
 }

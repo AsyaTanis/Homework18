@@ -33,4 +33,66 @@ public class Trucks extends Transport <DriverD> {
         System.out.println("Грузовой автомобиль " + getBrand()+ " закончил движение");
     }
 
+    @Override
+    public void getType() {
+    }
+
+    @Override
+    public void printType() {
+        System.out.println(Type.Trucks);
+    }
+}
+enum LoadCapacity{
+    N1 ("N1",0,3.5),
+    N2 ("N2",3.5,12),
+    N3 ("N3",12,15);
+
+    private double weightFrom;
+    private double weightUpTo;
+    private String capasity;
+
+    LoadCapacity(String capasity, double weightFrom, double weightUpTo) {
+        this.weightFrom = weightFrom;
+        this.weightUpTo = weightUpTo;
+        this.capasity = capasity;
+    }
+
+    public String getCapasity() {
+        return capasity;
+    }
+
+    public void setCapasity(String capasity) {
+        this.capasity = capasity;
+    }
+
+    public double getWeightFrom() {
+        return weightFrom;
+    }
+
+    public void setWeightFrom(double weightFrom) {
+        if (weightFrom <= 0 ){
+            System.out.println(getCapasity() + ": " + "до " + getWeightFrom());
+        }
+        this.weightFrom = weightFrom;
+    }
+
+    public double getWeightUpTo() {
+        return weightUpTo;
+    }
+
+    public void setWeightUpTo(double weightUpTo) {
+        if (weightFrom >= 15 ){
+            System.out.println(getCapasity() + ": " + "до " + getWeightUpTo());
+        }
+        this.weightUpTo = weightUpTo;
+    }
+
+    @Override
+    public String toString() {
+        return getCapasity() + ": " +
+                "нижняя граница = " + getWeightFrom() +
+                ", верхняя граница = " + getWeightUpTo();
+    }
+
+
 }
