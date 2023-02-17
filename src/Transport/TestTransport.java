@@ -42,15 +42,15 @@ public class TestTransport extends  Driver {
 
         System.out.println();
 
-        for (bodyType Type : bodyType.values()) {
+        for (PassengerCars.bodyType Type : PassengerCars.bodyType.values()) {
             System.out.println(Type.toString());
         }
         System.out.println();
-        for (LoadCapacity capacity : LoadCapacity.values()) {
+        for (Trucks.LoadCapacity capacity : Trucks.LoadCapacity.values()) {
             System.out.println(capacity.toString());
         }
         System.out.println();
-        for (Capacity busCapacity : Capacity.values()) {
+        for (Buses.Capacity busCapacity : Buses.Capacity.values()) {
             System.out.println(busCapacity.toString());
         }
         System.out.println();
