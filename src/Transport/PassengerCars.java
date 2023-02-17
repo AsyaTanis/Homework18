@@ -42,6 +42,10 @@ public class PassengerCars extends Transport <DriverB>  {
     public void printType() {
         System.out.println(Type.PassengerCars);
     }
+    @Override
+    public void passDiagnostics() {
+        System.out.println("Пройти диагностику " + getBrand() + " " + getModel());
+    }
 }
 enum bodyType{
     SEDAN("Седан"),

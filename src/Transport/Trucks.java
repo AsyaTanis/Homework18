@@ -41,6 +41,12 @@ public class Trucks extends Transport <DriverD> {
     public void printType() {
         System.out.println(Type.Trucks);
     }
+
+    @Override
+    public void passDiagnostics() {
+        System.out.println("Пройти диагностику " + getBrand() + " " + getModel());
+    }
+
 }
 enum LoadCapacity{
     N1 ("N1",0,3.5),

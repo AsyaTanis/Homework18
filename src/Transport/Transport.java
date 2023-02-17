@@ -1,4 +1,7 @@
 package Transport;
+import com.sun.jdi.connect.TransportTimeoutException;
+
+import java.io.IOException;
 
 public abstract  class Transport <T extends Driver> implements Competing {
     String brand;
@@ -79,6 +82,9 @@ public abstract  class Transport <T extends Driver> implements Competing {
     public abstract void getType();
 
     public abstract void printType();
+    public void passDiagnostics() throws TransportTypeException, IOException {
+    }
+
 
     @Override
     public String toString() {
