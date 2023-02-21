@@ -1,9 +1,15 @@
 package Transport;
 
-public class Trucks extends Transport <DriverD> {
+public class Trucks extends Transport <DriverD> implements Competing{
+    private final LoadCapacity loadType;
 
-    public Trucks(String brand, String model, Double engineVolume, DriverD driver) {
+    public Trucks(String brand, String model, Double engineVolume, DriverD driver, LoadCapacity loadType) {
         super(brand, model, engineVolume, driver);
+        this.loadType = loadType;
+    }
+
+    public LoadCapacity getLoadType() {
+        return loadType;
     }
 
     @Override
@@ -38,19 +44,26 @@ public class Trucks extends Transport <DriverD> {
     }
 
     @Override
-    public void printType() {
-        System.out.println(Type.Trucks);
+    public void printType()
+    {
+        if (loadType == null) {
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.println(Type.Trucks);
+            System.out.println(getLoadType().toString());
+        }
     }
+}
     enum LoadCapacity{
-        N1 ("N1",0,3.5),
-        N2 ("N2",3.5,12),
-        N3 ("N3",12,15);
+        N1 ("N1",null,3.5f),
+        N2 ("N2",3.5f,12f),
+        N3 ("N3",12f,15f);
 
-        private double weightFrom;
-        private double weightUpTo;
+        private Float weightFrom;
+        private Float weightUpTo;
         private String capasity;
 
-        LoadCapacity(String capasity, double weightFrom, double weightUpTo) {
+        LoadCapacity(String capasity, Float weightFrom, Float weightUpTo) {
             this.weightFrom = weightFrom;
             this.weightUpTo = weightUpTo;
             this.capasity = capasity;
@@ -64,33 +77,32 @@ public class Trucks extends Transport <DriverD> {
             this.capasity = capasity;
         }
 
-        public double getWeightFrom() {
+        public Float getWeightFrom() {
             return weightFrom;
         }
 
-        public void setWeightFrom(double weightFrom) {
+        public void setWeightFrom(Float weightFrom) {
             if (weightFrom <= 0 ){
                 System.out.println(getCapasity() + ": " + "до " + getWeightFrom());
             }
             this.weightFrom = weightFrom;
         }
 
-        public double getWeightUpTo() {
+        public Float getWeightUpTo() {
             return weightUpTo;
         }
 
-        public void setWeightUpTo(double weightUpTo) {
+        public void setWeightUpTo(Float weightUpTo) {
             if (weightFrom >= 15 ){
                 System.out.println(getCapasity() + ": " + "до " + getWeightUpTo());
             }
             this.weightUpTo = weightUpTo;
         }
 
-        @Override
-        public String toString() {
-            return getCapasity() + ": " +
-                    "нижняя граница = " + getWeightFrom() +
-                    ", верхняя граница = " + getWeightUpTo();
+            @Override
+            public String toString() {
+                return (getWeightFrom() == null) ? " Грузоподъемность до " + getWeightUpTo() + " тонн"
+                        : " Грузоподъемность от " + getWeightFrom() + " тонн " + ((getWeightUpTo() == null) ? ""
+                        : "до " + getWeightUpTo() + " тонн");
+            }
         }
-}
-}

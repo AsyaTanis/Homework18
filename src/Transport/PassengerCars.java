@@ -1,11 +1,16 @@
 package Transport;
 
-public class PassengerCars extends Transport <DriverB>  {
+public class PassengerCars extends Transport <DriverB> implements Competing {
 
-    public PassengerCars(String brand, String model, Double engineVolume, DriverB driver) {
+    private final BodyType bodyType;
+
+    public PassengerCars(String brand, String model, Double engineVolume, DriverB driver, BodyType bodyType) {
         super(brand, model, engineVolume, driver);
+        this.bodyType = bodyType;
     }
-
+    public BodyType getBodyType() {
+        return bodyType;
+    }
 
     @Override
     public void pitStop() {
@@ -40,38 +45,38 @@ public class PassengerCars extends Transport <DriverB>  {
 
     @Override
     public void printType() {
-        System.out.println(Type.PassengerCars);
+        if (bodyType == null) {
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.println(Type.PassengerCars);
+            System.out.println(getBodyType().toString());
+        }
     }
-
-    enum bodyType{
-        SEDAN("Седан"),
-        HATCHBACK("Хэтчбэк"),
-        COUPLE("Купе"),
-        STATIONWAGON("Универсал"),
-        SUV("Внедорожник"),
-        CROSSOVER("Кроссовер"),
-        PICKUP("Пикап"),
-        VAN("Фургон"),
-        MINIVAN("Минивэн");
-
-        private String type;
-        bodyType(String type) {
-            this.type = type;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        @Override
-        public String toString() {
-            return "Тип кузова " + getType() +": " +
-                    "Название типа кузова на русском языке '" + type + "'";
-        }
 }
+enum BodyType{
+    SEDAN("Седан"),
+    HATCHBACK("Хэтчбэк"),
+    COUPLE("Купе"),
+    STATIONWAGON("Универсал"),
+    SUV("Внедорожник"),
+    CROSSOVER("Кроссовер"),
+    PICKUP("Пикап"),
+    VAN("Фургон"),
+    MINIVAN("Минивэн");
 
+    private String type;
+    BodyType(String type) {
+        this.type = type;
+    }
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
+    @Override
+    public String toString() {
+        return "Тип кузова " + getType() +": " +
+                "Название типа кузова на русском языке '" + type + "'";
+    }
 }
