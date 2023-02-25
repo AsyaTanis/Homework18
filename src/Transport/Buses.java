@@ -1,12 +1,53 @@
 package Transport;
+
 import com.sun.jdi.connect.TransportTimeoutException;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Buses extends Transport <DriverC>  {
+    /*Mechanic mechanic1 = new Mechanic("Пискунов Артём", "АСТ-54");
+    Mechanic mechanic2 = new Mechanic("Иноземцев Иван", "АСТ-54");
+    Mechanic mechanic3 = new Mechanic("Поляков Дмитрий", "Reaktor");
+    Mechanic mechanic4 = new Mechanic("Савинов Вячеслав", "TopGear");
+    List<Mechanic>mechanic = new ArrayList<>();*/
 
 
-    public Buses(String brand, String model, Double engineVolume, DriverC driver) {
-        super(brand, model, engineVolume, driver);
+
+
+
+    public Buses(String brand, String model, Double engineVolume, DriverC driver,List<Mechanic>mechanicLists) {
+        super(brand, model, engineVolume, driver,mechanicLists);
+    }
+    @Override
+    public void performMaintenance() {
+        System.out.println("Провести техобслуживание" + getModel() + " " + getBrand());
+    }
+    @Override
+    public void fixTheCar() {
+        System.out.println("Починить машину" + getModel() + " " + getBrand());
+
+    }
+
+    @Override
+    public String toString() {
+        return "TheBuses{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", engineVolume=" + engineVolume +
+                ", driver=" + driver +
+                ", mechanicLists=" + mechanicLists +
+                '}';
+    }
+
+    @Override
+    public void nameOfTheDriver() {
+        System.out.println("Водителя автомобиля зовут - " + getDriver());
+    }
+    @Override
+    public void carMechanics() {
+        System.out.println("Механики закрепленные за автомобилем : " + getMechanicLists());
     }
 
     @Override
@@ -44,61 +85,40 @@ public class Buses extends Transport <DriverC>  {
     public void printType() {
         System.out.println(Type.Buses);
     }
-    @Override
 
-    public void passDiagnostics() throws TransportTypeException, IOException {
-        throw new TransportTypeException(getBrand() + " " + getModel() + " диагностику проходить не должны");
+    @Override
+    public void passDiagnostics() throws TransportTypeException, IOException{
+        throw new TransportTypeException("”Автобусы” диагностику проходить не должны");
     }
 }
 enum Capacity{
-    ESPECIALLY_SMALL("особо малая", 0, 10),
-    SMALL("малая", 0, 25),
-    MIDDLE("средняя", 25, 50),
-    BIG("большая", 50, 80),
-    ESPECIALLY_BIG("особо большая", 80, 120);
-    private double capacityUpTo;
-    private double capacityFrom;
-    private String busCapacity;
+    ESPECIALLY_SMALL(null, " до 10 мест"),
+    SMALL(null, " до 25 мест"),
+    MIDDLE("25 -", " 50"),
+    BIG("50 -", " 80"),
+    ESPECIALLY_BIG("80 -", " 120");
 
-    Capacity(String busCapacity, double capacityFrom, double capacityUpTo) {
-        this.capacityFrom = capacityFrom;
+    private String capacityFrom;
+    private String capacityUpTo;
+
+    Capacity(String capacityFrom,String capacityUpTo) {
+        this.capacityFrom=capacityFrom;
         this.capacityUpTo = capacityUpTo;
-        this.busCapacity = busCapacity;
-    }
-    public String getBusCapacity() {
-        return busCapacity;
     }
 
-    public void setBusCapacity(String busCapacity) {
-        this.busCapacity = busCapacity;
-    }
-
-    public double getCapacityFrom() {
+    public String getCapacityFrom() {
         return capacityFrom;
     }
 
-    public void setCapacityFrom(double capacityFrom) {
-        if (capacityFrom <= 0 ){
-            System.out.println(getBusCapacity()  + ": " + "до " + getCapacityFrom());
-        }
+    public void setCapacityFrom(String capacityFrom) {
         this.capacityFrom = capacityFrom;
     }
 
-    public double getCapacityUpTo() {
+    public String getCapacityUpTo() {
         return capacityUpTo;
     }
 
-    public void setCapacityUpTo(double capacityUpTo) {
-        if (capacityFrom >= 15 ){
-            System.out.println(getBusCapacity() + ": " + "до " + getCapacityUpTo());
-        }
+    public void setCapacityUpTo(String capacityUpTo) {
         this.capacityUpTo = capacityUpTo;
-    }
-
-    @Override
-    public String toString() {
-        return getBusCapacity() + ": " +
-                "нижняя граница = " + getCapacityFrom() +
-                ", верхняя граница = " + getCapacityUpTo() + " мест";
     }
 }

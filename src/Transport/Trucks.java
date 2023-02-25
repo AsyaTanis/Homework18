@@ -1,9 +1,39 @@
 package Transport;
 
-public class Trucks extends Transport <DriverD> {
+import java.util.List;
 
-    public Trucks(String brand, String model, Double engineVolume, DriverD driver) {
-        super(brand, model, engineVolume, driver);
+public class Trucks extends Transport <DriverD> implements ServiceStation {
+
+    public Trucks(String brand, String model, Double engineVolume, DriverD driver, List<Mechanic>mechanicLists) {
+        super(brand, model, engineVolume, driver, mechanicLists);
+    }
+    @Override
+    public void performMaintenance() {
+        System.out.println("Провести техобслуживание" + getModel() + " " + getBrand());
+    }
+    @Override
+    public void fixTheCar() {
+        System.out.println("Починить машину" + getModel() + " " + getBrand());
+
+    }
+    @Override
+    public void nameOfTheDriver() {
+        System.out.println("Водителя автомобиля зовут - " + getDriver());
+    }
+    @Override
+    public void carMechanics() {
+        System.out.println("Механики закрепленные за автомобилем : " + getMechanicLists());
+    }
+
+    @Override
+    public String toString() {
+        return "Trucks{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", engineVolume=" + engineVolume +
+                ", driver=" + driver +
+                ", mechanicLists=" + mechanicLists +
+                '}';
     }
 
     @Override
@@ -47,28 +77,27 @@ public class Trucks extends Transport <DriverD> {
         System.out.println("Пройти диагностику " + getBrand() + " " + getModel());
     }
 
+    @Override
+    public void addACarToTheQueue() {
+        System.out.println("Добавить авто в очередь - " + getBrand() + " " + getModel());
+    }
+
+    @Override
+    public void technicalInspectionOfTheCar() {
+        System.out.println("Провести техосмотр авто - " + getBrand() + " " + getModel());
+    }
 }
 enum LoadCapacity{
-    N1 ("N1",0,3.5),
-    N2 ("N2",3.5,12),
-    N3 ("N3",12,15);
+    N1 (0,3.5),
+    N2 (3.5,12),
+    N3 (12,15);
 
     private double weightFrom;
     private double weightUpTo;
-    private String capasity;
 
-    LoadCapacity(String capasity, double weightFrom, double weightUpTo) {
-        this.weightFrom = weightFrom;
+    LoadCapacity(double weightFrom, double weightUpTo) {
+        setWeightFrom(weightFrom);
         this.weightUpTo = weightUpTo;
-        this.capasity = capasity;
-    }
-
-    public String getCapasity() {
-        return capasity;
-    }
-
-    public void setCapasity(String capasity) {
-        this.capasity = capasity;
     }
 
     public double getWeightFrom() {
@@ -77,7 +106,7 @@ enum LoadCapacity{
 
     public void setWeightFrom(double weightFrom) {
         if (weightFrom <= 0 ){
-            System.out.println(getCapasity() + ": " + "до " + getWeightFrom());
+            System.out.println("Грузоподъемность»: до «нижняя граница» тонн.");
         }
         this.weightFrom = weightFrom;
     }
@@ -88,17 +117,17 @@ enum LoadCapacity{
 
     public void setWeightUpTo(double weightUpTo) {
         if (weightFrom >= 15 ){
-            System.out.println(getCapasity() + ": " + "до " + getWeightUpTo());
+            System.out.println("Грузоподъемность»: до «верхняя граница» тонн.");
         }
         this.weightUpTo = weightUpTo;
     }
 
     @Override
     public String toString() {
-        return getCapasity() + ": " +
-                "нижняя граница = " + getWeightFrom() +
-                ", верхняя граница = " + getWeightUpTo();
+        return "Грузоподъемность{" +
+                "нижняя граница=" + weightFrom +
+                ", верхняя граница=" + weightUpTo +
+                '}';
     }
-
 
 }
