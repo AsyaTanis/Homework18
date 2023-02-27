@@ -15,12 +15,13 @@ public class PassengerCars extends Transport <DriverB>  implements ServiceStatio
 
     @Override
     public String toString() {
-        return "PassengerCar " +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", engineVolume=" + engineVolume +
-                ", driver=" + driver +
-                ", mechanicLists=" + mechanicLists;
+        return "Пассажирская машина " +
+                "Марка = '" + brand + '\'' +
+                ", Модель = '" + model + '\'' +
+                ", Объем двигателя = " + engineVolume +
+                ", Водитель = " + driver +
+                ", Механик";
+                //+ mechanicLists;
     }
 
     @Override

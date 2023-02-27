@@ -43,8 +43,8 @@ public abstract class Driver  {
     public String toString() {
         return
                 "Имя - '" + name + '\'' +
-                ", водительские права категории: " + aDriversLicense +
-                ", опыт вождения :" + experience;
+                ", водительские права: " + aDriversLicense +
+                ", опыт вождения: " + experience;
     }
 
     public abstract void startMoving();
