@@ -66,6 +66,26 @@ public class TestTransport extends  Driver {
 
         System.out.println();
 
+        Set<Driver>driverList = new HashSet<>();
+        driverList.add(new DriverB("Романов Иван Федорович", true,2));
+        driverList.add(new DriverB("Романов Иван Федорович", true,2));
+        driverList.add(new DriverB("Романов Иван Федорович", true,2));
+        driverList.add(new DriverB("Романов Иван Федорович", true,2));
+        driverList.add(new DriverC("Малинов Кирилл Викторович", true,15));
+        driverList.add(new DriverC("Малинов Кирилл Викторович", true,15));
+        driverList.add(new DriverC("Малинов Кирилл Викторович", true,15));
+        driverList.add(new DriverC("Малинов Кирилл Викторович", true,15));
+        driverList.add(new DriverD("Григорьев Сергей Александрович", true,23));
+        driverList.add(new DriverD("Григорьев Сергей Александрович", true,23));
+        driverList.add(new DriverD("Григорьев Сергей Александрович", true,23));
+        driverList.add(new DriverD("Григорьев Сергей Александрович", true,23));
+
+        Iterator<Driver> driver = driverList.iterator();
+        while (driver.hasNext()) {
+            System.out.println(driver.next());
+        }
+        System.out.println();
+
         System.out.println(B1.getPrintInfo(passengerCar));
         System.out.println(B2.getPrintInfo(passengerCar2));
         System.out.println(B3.getPrintInfo(passengerCar3));
